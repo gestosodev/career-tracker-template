@@ -1,0 +1,125 @@
+% Placeholder CV layout. Compile with XeLaTeX or LuaLaTeX.
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[british]{babel}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newgeometry{left=15mm,right=15mm,top=15mm,bottom=15mm}
+\setlength{\parindent}{0mm}
+
+\newlength{\cvcolumngapwidth}
+\setlength{\cvcolumngapwidth}{3.5mm}
+\newlength{\cvleftcolumnwidth}
+\setlength{\cvleftcolumnwidth}{44.5mm}
+\newlength{\cvrightcolumnwidth}
+\setlength{\cvrightcolumnwidth}{\textwidth-\cvleftcolumnwidth-\cvcolumngapwidth}
+
+\defaultfontfeatures{Ligatures=TeX}
+\newif\ifcvroboto
+\cvrobototrue
+\IfFontExistsTF{Roboto Light}{}{\cvrobotofalse}
+\IfFontExistsTF{Roboto Medium}{}{\cvrobotofalse}
+\IfFontExistsTF{Roboto Regular}{}{\cvrobotofalse}
+\IfFontExistsTF{Roboto Light Italic}{}{\cvrobotofalse}
+\ifcvroboto
+  \newfontfamily{\cvnamefont}{Roboto Medium}
+  \newfontfamily{\cvsectionfont}{Roboto Medium}
+  \newfontfamily{\cvtitlefont}{Roboto Regular}
+  \newfontfamily{\cvdurationfont}{Roboto Light Italic}
+  \newfontfamily{\cvheadingfont}{Roboto Regular}
+  \setmainfont{Roboto Light}
+\else
+  \newfontfamily{\cvnamefont}{lmsans10-regular.otf}
+  \newfontfamily{\cvsectionfont}{lmsans10-regular.otf}
+  \newfontfamily{\cvtitlefont}{lmsans10-regular.otf}
+  \newfontfamily{\cvdurationfont}{lmroman10-regular.otf}
+  \newfontfamily{\cvheadingfont}{lmsans10-regular.otf}
+  \setmainfont[BoldFont=lmroman10-bold.otf,ItalicFont=lmroman10-italic.otf,BoldItalicFont=lmroman10-bolditalic.otf]{lmroman10-regular.otf}
+\fi
+
+\newcommand{\cvnamestyle}[1]{{\Large\cvnamefont #1}}
+\newcommand{\cvsectionstyle}[1]{{\normalsize\cvsectionfont #1}}
+\newcommand{\cvtitlestyle}[1]{{\large\cvtitlefont #1}}
+\newcommand{\cvdurationstyle}[1]{{\small\itshape\cvdurationfont #1}}
+\newcommand{\cvheadingstyle}[1]{{\normalsize\cvheadingfont #1}}
+
+\newlength{\cvafteritemskipamount}
+\setlength{\cvafteritemskipamount}{4mm plus 1mm minus 1mm}
+\newlength{\cvaftersectionskipamount}
+\setlength{\cvaftersectionskipamount}{2mm plus .5mm minus .5mm}
+\newlength{\cvafternameskipamount}
+\setlength{\cvafternameskipamount}{3mm}
+\newlength{\cvafterpersonalinfolineskipamount}
+\setlength{\cvafterpersonalinfolineskipamount}{1.5mm}
+\newlength{\cvaftertitleskipamount}
+\setlength{\cvaftertitleskipamount}{1mm}
+\newlength{\cvparskip}
+\setlength{\cvparskip}{.5mm}
+\setlist{parsep=0mm,topsep=0mm,partopsep=0mm,itemsep=\cvparskip}
+\pagestyle{empty}
+
+\newcommand{\cvpersonalinfo}[2]{
+  \begin{minipage}[t]{\cvleftcolumnwidth}\raggedleft #1\end{minipage}%
+  \hspace{\cvcolumngapwidth}%
+  \begin{minipage}[t]{\cvrightcolumnwidth}#2\end{minipage}
+  \vspace{\cvafteritemskipamount}
+}
+\newcommand{\cvname}[1]{\cvnamestyle{#1}\vspace{\cvafternameskipamount}}
+\newcommand{\cvsection}[1]{
+  \begin{minipage}[t]{\cvleftcolumnwidth}\raggedleft\cvsectionstyle{#1}\end{minipage}%
+  \hspace{\cvcolumngapwidth}%
+  \begin{minipage}[t]{\cvrightcolumnwidth}\rule{\cvrightcolumnwidth}{.3mm}\end{minipage}
+  \vspace{\cvaftersectionskipamount}
+}
+\newcommand{\cvitem}[2]{
+  \begin{minipage}[t]{\cvleftcolumnwidth}\raggedleft #1\end{minipage}%
+  \hspace{\cvcolumngapwidth}%
+  \begin{minipage}[t]{\cvrightcolumnwidth}\setlength{\parskip}{\cvparskip}#2\end{minipage}
+  \vspace{\cvafteritemskipamount}
+}
+\newcommand{\cvtitle}[1]{\cvtitlestyle{#1}\vspace{\cvaftertitleskipamount}\vspace{-\cvparskip}}
+
+\begin{document}
+
+% Placeholders correspond to career/cv.md. Replace every field before use.
+\cvpersonalinfo{}{
+  \cvname{[Full name]}\par
+  [City, country]\par
+  [Email] \textbullet{} [Optional phone]\par
+  [Professional link]\par
+  [Brief professional summary grounded in documented experience.]
+}
+
+\cvsection{EXPERIENCE}
+\cvitem{\cvdurationstyle{[Start date to end date]}}{
+  \cvtitle{[Organisation]}\par
+  [Official role title]\par
+  [Location or work arrangement]
+  \begin{itemize}[leftmargin=*]
+    \item [Your contribution, relevant context, and supported outcome.]
+    \item [Another supported contribution. Omit metrics unless documented.]
+  \end{itemize}
+}
+
+\cvsection{EDUCATION}
+\cvitem{\cvdurationstyle{[Dates]}}{
+  \cvtitle{[Qualification or degree]}\par
+  [Institution]
+}
+
+\cvsection{SKILLS}
+\cvitem{}{
+  [Supported skills relevant to your target roles.]
+}
+
+\cvsection{LANGUAGES}
+\cvitem{}{
+  [Language and supported proficiency.]
+}
+
+\end{document}

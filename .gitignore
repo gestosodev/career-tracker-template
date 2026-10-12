@@ -1,0 +1,20 @@
+# Original personal documents and generated deliverables remain local.
+/sources/*
+!/sources/.gitkeep
+/exports/*
+!/exports/.gitkeep
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+
+# Local system/editor files
+.DS_Store
+~$*
+*.swp

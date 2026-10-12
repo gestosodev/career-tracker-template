@@ -1,0 +1,115 @@
+% Placeholder cover letter. Compile with XeLaTeX or LuaLaTeX.
+% Matching Markdown: templates/application/cover-letter.md.
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[british]{babel}
+\usepackage{calc}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+\newgeometry{left=15mm,right=15mm,top=15mm,bottom=15mm}
+\newlength{\cvcolumngapwidth}
+\setlength{\cvcolumngapwidth}{3.5mm}
+\newlength{\cvleftcolumnwidth}
+\setlength{\cvleftcolumnwidth}{44.5mm}
+\newlength{\cvrightcolumnwidth}
+\setlength{\cvrightcolumnwidth}{\textwidth-\cvleftcolumnwidth-\cvcolumngapwidth}
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{2.5mm plus 0.5mm minus 0.5mm}
+
+\defaultfontfeatures{Ligatures=TeX}
+\newif\ifcvroboto
+\cvrobototrue
+\IfFontExistsTF{Roboto Light}{}{\cvrobotofalse}
+\IfFontExistsTF{Roboto Medium}{}{\cvrobotofalse}
+\ifcvroboto
+  \newfontfamily{\cvnamefont}{Roboto Medium}
+  \newfontfamily{\cvsectionfont}{Roboto Medium}
+  \setmainfont{Roboto Light}
+\else
+  \newfontfamily{\cvnamefont}{lmsans10-regular.otf}
+  \newfontfamily{\cvsectionfont}{lmsans10-regular.otf}
+  \setmainfont[BoldFont=lmroman10-bold.otf,ItalicFont=lmroman10-italic.otf,BoldItalicFont=lmroman10-bolditalic.otf]{lmroman10-regular.otf}
+\fi
+
+\definecolor{cvnamecolor}{HTML}{000000}
+\definecolor{cvsectioncolor}{HTML}{000000}
+\definecolor{cvmaincolor}{HTML}{000000}
+\definecolor{cvrulecolor}{HTML}{000000}
+\color{cvmaincolor}
+
+\newcommand{\cvnamestyle}[1]{{\Large\cvnamefont\textcolor{cvnamecolor}{#1}}}
+\newcommand{\cvsectionstyle}[1]{{\normalsize\cvsectionfont\textcolor{cvsectioncolor}{#1}}}
+
+\newlength{\cvafterheaderskipamount}
+\setlength{\cvafterheaderskipamount}{7mm plus 1mm minus 1mm}
+\newlength{\cvaftersectionskipamount}
+\setlength{\cvaftersectionskipamount}{2mm plus 0.5mm minus 0.5mm}
+
+\newcommand{\cvheader}[2]{
+    \begin{minipage}[t]{\cvleftcolumnwidth}
+        \raggedleft\cvnamestyle{#1}
+    \end{minipage}%
+    \hspace{\cvcolumngapwidth}%
+    \begin{minipage}[t]{\cvrightcolumnwidth}
+        #2
+    \end{minipage}
+    \par\vspace{\cvafterheaderskipamount}
+}
+\newcommand{\cvsection}[1]{
+    \begin{minipage}[t]{\cvleftcolumnwidth}
+        \raggedleft\cvsectionstyle{#1}
+    \end{minipage}%
+    \hspace{\cvcolumngapwidth}%
+    \begin{minipage}[t]{\cvrightcolumnwidth}
+        \textcolor{cvrulecolor}{\rule{\cvrightcolumnwidth}{0.3mm}}
+    \end{minipage}
+    \par\vspace{\cvaftersectionskipamount}
+}
+\newcommand{\cvlettertext}[1]{
+    \begin{minipage}[t]{\cvleftcolumnwidth}
+        \mbox{}
+    \end{minipage}%
+    \hspace{\cvcolumngapwidth}%
+    \begin{minipage}[t]{\cvrightcolumnwidth}
+        \setlength{\parindent}{0mm}
+        \setlength{\parskip}{2.5mm plus 0.5mm minus 0.5mm}
+        #1
+    \end{minipage}
+    \par\vspace{4mm}
+}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\cvheader{[Full name]}{
+    [City, country]\par
+    [Optional phone]\par
+    [Email]\par
+    [Professional link]
+}
+
+\cvsection{WHY THIS COMPANY?}
+
+\cvlettertext{
+[Company] interests me because [specific, verified aspect of its work, product, or mission]. I am applying for [Role] because [connection between the role and my confirmed career interests].
+
+[A second reason based on the role posting or company research]. I would welcome the opportunity to [contribution relevant to the role, without implying experience I have not documented].
+}
+
+\cvsection{WHY ME?}
+
+\cvlettertext{
+I bring [relevant strengths supported by my career records]. These connect to your need for [requirement from the role posting].
+
+In [Role or project] at [Organisation], I [specific personal contribution]. [Supported outcome, keeping its scope and any measurement accurate]. This experience is relevant to [requirement or problem in the target role].
+
+I also [second supported contribution or relevant way of working]. [Concrete evidence from a documented experience].
+
+I would welcome the opportunity to discuss how my experience could contribute to [Company] as [Role].
+}
+
+\end{document}

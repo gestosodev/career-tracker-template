@@ -19,7 +19,9 @@
 - `application-form.md`: exact form fields, limits, and requirements
 - `application-answers.md`: draft responses for review
 - `cv.tex` or other rendering source: create in the chosen format
-- `cover-letter.md` or interview notes: create only when needed
+- `cover-letter.md`: optional placeholder draft, fill only when requested or useful
+- `cover-letter.tex`: optional rendering source based on `cv-tex/cover-letter-example.tex`
+- Interview notes: create only when needed
 
 ## Final deliverables
 

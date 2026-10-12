@@ -7,6 +7,8 @@
 \usepackage{fontspec}
 \usepackage{geometry}
 \usepackage{microtype}
+\usepackage{graphicx}
+\graphicspath{{cv-tex/}{../../../cv-tex/}{./}}
 \usepackage[hidelinks]{hyperref}
 
 \newgeometry{left=15mm,right=15mm,top=15mm,bottom=15mm}
@@ -64,34 +66,42 @@
 \pagestyle{empty}
 
 \newcommand{\cvpersonalinfo}[2]{
-  \begin{minipage}[t]{\cvleftcolumnwidth}\raggedleft #1\end{minipage}%
+  \noindent\begin{minipage}[t]{\cvleftcolumnwidth}\vspace{0pt}\raggedleft\strut #1\end{minipage}%
   \hspace{\cvcolumngapwidth}%
-  \begin{minipage}[t]{\cvrightcolumnwidth}#2\end{minipage}
-  \vspace{\cvafteritemskipamount}
+  \begin{minipage}[t]{\cvrightcolumnwidth}\vspace{0pt}#2\end{minipage}
+  \par\vspace{\cvafteritemskipamount}
 }
 \newcommand{\cvname}[1]{\cvnamestyle{#1}\vspace{\cvafternameskipamount}}
+\newcommand{\cvpersonalinfolinewithicon}[3]{
+  \raisebox{-.1\height}{\includegraphics[#1]{#2}} #3
+  \vspace{\cvafterpersonalinfolineskipamount}
+}
 \newcommand{\cvsection}[1]{
   \begin{minipage}[t]{\cvleftcolumnwidth}\raggedleft\cvsectionstyle{#1}\end{minipage}%
   \hspace{\cvcolumngapwidth}%
   \begin{minipage}[t]{\cvrightcolumnwidth}\rule{\cvrightcolumnwidth}{.3mm}\end{minipage}
-  \vspace{\cvaftersectionskipamount}
+  \par\vspace{\cvaftersectionskipamount}
 }
 \newcommand{\cvitem}[2]{
-  \begin{minipage}[t]{\cvleftcolumnwidth}\raggedleft #1\end{minipage}%
+  \noindent\begin{minipage}[t]{\cvleftcolumnwidth}\vspace{0pt}\raggedleft\strut #1\end{minipage}%
   \hspace{\cvcolumngapwidth}%
-  \begin{minipage}[t]{\cvrightcolumnwidth}\setlength{\parskip}{\cvparskip}#2\end{minipage}
-  \vspace{\cvafteritemskipamount}
+  \begin{minipage}[t]{\cvrightcolumnwidth}\vspace{0pt}\setlength{\parskip}{\cvparskip}#2\end{minipage}
+  \par\vspace{\cvafteritemskipamount}
 }
 \newcommand{\cvtitle}[1]{\cvtitlestyle{#1}\vspace{\cvaftertitleskipamount}\vspace{-\cvparskip}}
 
 \begin{document}
 
 % Placeholders correspond to career/cv.md. Replace every field before use.
-\cvpersonalinfo{}{
+\cvpersonalinfo{
+  % Replace this PNG with your own photo when personalising the template.
+  \includegraphics[height=36mm]{image-example.png}
+}{
   \cvname{[Full name]}\par
-  [City, country]\par
-  [Email] \textbullet{} [Optional phone]\par
-  [Professional link]\par
+  \cvpersonalinfolinewithicon{height=4mm}{072-location.pdf}{[City, country]}\par
+  \cvpersonalinfolinewithicon{height=4mm}{067-phone.pdf}{[Optional phone]}\par
+  \cvpersonalinfolinewithicon{height=4mm}{070-envelop.pdf}{[Email]}\par
+  \cvpersonalinfolinewithicon{height=4mm}{458-linkedin.pdf}{[Professional link]}\par
   [Brief professional summary grounded in documented experience.]
 }
 
@@ -101,8 +111,8 @@
   [Official role title]\par
   [Location or work arrangement]
   \begin{itemize}[leftmargin=*]
-    \item [Your contribution, relevant context, and supported outcome.]
-    \item [Another supported contribution. Omit metrics unless documented.]
+    \item {}[Your contribution, relevant context, and supported outcome.]
+    \item {}[Another supported contribution. Omit metrics unless documented.]
   \end{itemize}
 }
 
